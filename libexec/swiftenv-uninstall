@@ -28,6 +28,10 @@ elif [ -d "/Library/Developer/Toolchains/swift-$VERSION.xctoolchain" ]; then
   VERSION_DIRECTORY="/Library/Developer/Toolchains/swift-$VERSION.xctoolchain"
 elif [ -d "$HOME/Library/Developer/Toolchains/swift-$VERSION.xctoolchain" ]; then
   VERSION_DIRECTORY="$HOME/Library/Developer/Toolchains/swift-$VERSION.xctoolchain"
+elif [ -d "/Library/Developer/Toolchains/swift-$VERSION-RELEASE.xctoolchain" ]; then
+  VERSION_DIRECTORY="/Library/Developer/Toolchains/swift-$VERSION-RELEASE.xctoolchain"
+elif [ -d "$HOME/Library/Developer/Toolchains/swift-$VERSION-RELEASE.xctoolchain" ]; then
+  VERSION_DIRECTORY="$HOME/Library/Developer/Toolchains/swift-$VERSION-RELEASE.xctoolchain"
 else
 
   # Xcode installs
@@ -50,9 +54,13 @@ else
   exit 1
 fi
 
-CURRENT_VERSION=$(cat "$SWIFTENV_ROOT/version")
-if [ "$VERSION" == "$CURRENT_VERSION" ]; then
-  rm -f "$SWIFTENV_ROOT/version"
+
+if [ -r "$SWIFTENV_ROOT/version" ]; then
+  CURRENT_VERSION=$(cat "$SWIFTENV_ROOT/version")
+
+  if [ "$VERSION" == "$CURRENT_VERSION" ]; then
+    rm -f "$SWIFTENV_ROOT/version"
+  fi
 fi
 
 if [[ "$VERSION_DIRECTORY" == "/Library/Developer/Toolchains/"* ]]; then

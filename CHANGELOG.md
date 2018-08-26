@@ -1,6 +1,6 @@
 # Changelog
 
-## Master
+## 1.4.0
 
 ## 1.4.2
 
@@ -32,6 +32,21 @@
   install` was provided an explicit version. When installing with the
   `SWIFT_VERSION` environment value or the `.swift-version` file present, then
   the default behaviour is to not set the global or local version.
+
+- When installing Swift from binary, swiftenv will now detect Ubuntu-based
+  Linux distributions such as Elementary OS and use the appropriate binary
+  image from swift.org.
+
+### Bug Fixes
+
+- On macOS, `swiftenv uninstall` would fail to uninstall some installed binary
+  toolchains due to `-RELEASE` being after the version in some paths that was
+  unexpected.
+
+- When using `swiftenv uninstall`, the command would fail if there was no
+  global set version of swift. The command can now handle missing global
+  version.
+
 
 ## 1.3.0
 
