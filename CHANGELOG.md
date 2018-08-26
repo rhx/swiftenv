@@ -1,6 +1,8 @@
 # Changelog
 
-## 1.4.0
+## 1.4.3
+
+- Add Swift 4.2 convergence snapshots.
 
 ## 1.4.2
 
